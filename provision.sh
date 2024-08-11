@@ -18,7 +18,7 @@
         server_name 192.168.56.101;
 
         location / {
-            proxy_pass http://localhost:5173;
+            proxy_pass http://localhost:8080;
             proxy_set_header Host \$host;
             proxy_set_header X-Real-IP \$remote_addr;
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
@@ -46,8 +46,10 @@
     sudo systemctl start jenkins
     sudo systemctl enable jenkins
 
-    sudo docker pull minhthanh14032003/vite-docker:v1.0
-    sudo docker run -d -p 5173:8080 minhthanh14032003/vite-docker:v1.0
+    # Install ngrok
+    sudo snap install ngrok
+    ngrok config add-authtoken 2hsS4zJcrZnKMuaCIGO2DhGxiAa_3Z7MUps8SuQdWn2twLz16
+    ngrok http http://localhost:8080
 
     # Print completion message
     echo "Docker, Nginx, and Jenkins have been installed and started."

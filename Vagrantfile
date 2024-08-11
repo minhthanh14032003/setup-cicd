@@ -16,6 +16,8 @@ Vagrant.configure("2") do |config|
   
   # Set static IP
   config.vm.network "private_network", ip: "192.168.56.101"
+  
+
 
   config.vm.provision "shell", path: "provision.sh"
 end
